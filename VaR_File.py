@@ -20,7 +20,7 @@ def percent_var(r, confidence):
     
 
     plt.hist(r, bins=50, alpha=0.75)
-    plt.show()
+    
     alpha = 1 - confidence
     out = np.percentile(r, alpha * 100)  # Calculate the percentile
     return abs(out)  # Return the absolute value of the calculated percentile
