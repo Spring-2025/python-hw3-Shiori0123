@@ -12,8 +12,8 @@ def ES(losses, confidence=None, VaR=None, use_PnL=False):
     """
     if VaR is None:
         # If VaR is not provided, determine VaR based on the confidence percentile
-        VaR = np.percentile(losses, 100 * confidence)
-    
+        VaR = np.percentile(losses, 100 * (1-confidence))
+
     # Calculate ES as the average of losses exceeding the VaR threshold
     es_value = np.mean(losses[losses > VaR])
     return es_value

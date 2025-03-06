@@ -8,7 +8,7 @@ def YahooData2returns(YahooData):
     # Extract values from 'Adj Close' column to transform to a simple array
     # Calculate and return the lagged returns
 
-    pricevec = YahooData.values
+    pricevec = YahooData['Adj Close'].values
     n = len(pricevec)
     ratiovec = pricevec[1:n]/pricevec[:n-1]
     returns = ratiovec - 1
