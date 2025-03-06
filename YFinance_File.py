@@ -7,8 +7,13 @@ def YahooData2returns(YahooData):
     # Extract 'Adj Close' column
     # Extract values from 'Adj Close' column to transform to a simple array
     # Calculate and return the lagged returns
-
+    if 'Adj Close' not in YahooData.columns:
+        raise ValueError("YahooData must contain 'Adj Close' column")
+    
     pricevec = YahooData['Adj Close'].values
+    if len(pricevec) < 2:
+        raise ValueError("Not enough data points to calculate returns")
+    
     n = len(pricevec)
     ratiovec = pricevec[1:n]/pricevec[:n-1]
     returns = ratiovec - 1
@@ -31,6 +36,8 @@ n = len(pricevec)
 ratiovec = pricevec[1:n] / pricevec[:n-1]
 
 def get_returns(pricevec):
+    if len(pricevec) < 2:
+        raise ValueError("Not enough data points to calculate returns")
     n = len(pricevec)
     ratiovec = pricevec[1:n] / pricevec[:n-1]
     returns = ratiovec - 1  # assuming the return calculation is (price_t / price_t-1) - 1
